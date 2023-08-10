@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour
     public float Jumpow  = 5f;
     public Rigidbody2D rb =new Rigidbody2D();
     int point = 0;
+    bool isFly;
     GameManager gameManager;
     private void Start()
     {
+        isFly = false;
         gameManager = GameObject.FindAnyObjectByType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -20,15 +22,17 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButton("Jump") )
         {
-            /*Debug.Log("this ok !");*/
-            rb.velocity = Vector2.up * Jumpow ;
+            btn_jump();
         }   
     }
 
+
     public void btn_jump()
     {
+        isFly = true;
         rb.velocity = Vector2.up * Jumpow;
         Time.timeScale = 1;
+        gameManager.isFly(isFly);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -47,6 +51,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator gamestart()
     {
         point = 0;
+        isFly = false;
+        gameManager.isFly(isFly);
         gameManager.addPoint(point);
         yield return new WaitForSecondsRealtime(1);
         Debug.Log("game over!!!");

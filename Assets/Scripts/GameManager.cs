@@ -12,7 +12,7 @@ public class SaveGameobj
         for(int i = 0;i < wallManagers.Count;i++ )
         {
             pos.Add(wallManagers[i].transform.position);
-            Debug.Log(pos[i]);
+            //Debug.Log(pos[i]);
             
         }
     }
@@ -26,6 +26,7 @@ public class SaveGameobj
 }
 public class GameManager : MonoBehaviour
 {
+    AudioManager audioManager;
     GameStartController gameStartController;
     GamePlayController gamePlayController;
     GamePauseController gamePauseController;
@@ -35,13 +36,14 @@ public class GameManager : MonoBehaviour
     public List<GameObject> wallManagers;
     [SerializeField] SaveGameobj saveGameobj;
     int point;
+    bool isfly;
 private void Start()
     {
         saveGameobj.getTranform(wallManagers);
         gameStartController = gamestart.GetComponent<GameStartController>();
         gamePauseController = gamepause.GetComponent<GamePauseController>();
         gamePlayController = gameplay.GetComponent<GamePlayController>();
-        
+        audioManager = FindAnyObjectByType<AudioManager>();
         gameStartController.SetActiveGameStart(true);
     }
 
@@ -55,8 +57,15 @@ private void Start()
         }
     }
 
+    public void isFly (bool isfly)
+    {
+         this.isfly = isfly;
+        gamePauseController.isFly(isfly);
+    }
+
     public void addPoint( int point)
     {
+        audioManager.Audio_AddPoint();
         gamePlayController.SetPoint(point);
         this.point = point;
     }

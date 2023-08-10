@@ -10,7 +10,7 @@ public class GameStartController : MonoBehaviour
     private void Start()
     {
         txt_hightpoint.text = "HightPoint : " + PlayerPrefs.GetInt("hightpoint",0).ToString();
-        Debug.Log(PlayerPrefs.GetInt("hightpoint").ToString());
+        //Debug.Log(PlayerPrefs.GetInt("hightpoint").ToString());
     }
     public void SetActiveGameStart(bool setactive)
     {

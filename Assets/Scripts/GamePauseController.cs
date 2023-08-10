@@ -7,6 +7,7 @@ public class GamePauseController : MonoBehaviour
 {
     public GameObject gamepause;
     public TextMeshProUGUI txt_point;
+    public bool isfly;
     public void SetActiveGamePause(bool setactive)
     {
         gamepause.SetActive(setactive);
@@ -15,10 +16,14 @@ public class GamePauseController : MonoBehaviour
     {
         return gamepause.active;
     }
-
+    public void isFly(bool isfly)
+    {
+        this.isfly = isfly;
+    }
     public void btn_Resume()
     {
         gamepause.SetActive(false);
+        if (this.isfly == false) return;
         Time.timeScale = 1;
     }
 
