@@ -8,6 +8,10 @@ TagManager:
   - resetwall
   - addpoint
   - Ground
+  - gameover
+  - gameplay
+  - gamestart
+  - gamepause
   layers:
   - Default
   - TransparentFX
@@ -15,9 +19,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Player_collider
+  - CheckPoint
   - 
   - 
   - 
@@ -44,4 +48,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: player
+    uniqueID: 723425015
+    locked: 0
+  - name: walls
+    uniqueID: 1440002197
     locked: 0

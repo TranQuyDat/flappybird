@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
         gameManager = GameObject.FindAnyObjectByType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
     }
+    private void Update()
+    {
+    }
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -42,22 +45,35 @@ public class PlayerController : MonoBehaviour
         }
         else if  (collision.tag == "isWall" || collision.tag == "Ground")
         {
-            gameManager.gameplay.SetActive(false);
-            Time.timeScale = 0;
+            Gameover();
+            gameManager.checkBirdDie(true);
+            gameManager.setactive_Gameplay(false);
+            gameManager.setWallSpeed(0);
+            //Time.timeScale = 0;
             gameManager.updateHightPoint(point);
-            StartCoroutine(gamestart());
+            Debug.Log("this ok");
+
+
         }
     }
-    IEnumerator gamestart()
+
+    public void Gameover()
+    {
+        gameManager.setPoint_gameover(point);
+        gameManager.setactive_Gameover(true);
+        gameManager.setactive_Gameplay(false);
+    }
+    public void Gamestart()
     {
         point = 0;
+        Debug.Log("gameover");
+        gameManager.setWallSpeed(3);
         isFly = false;
+        gameManager.checkBirdDie(false);
         gameManager.isFly(isFly);
-        gameManager.addPoint(point);
-        yield return new WaitForSecondsRealtime(1);
-        Debug.Log("game over!!!");
-        
+        gameManager.setPoint_gameplay(point);
         gameManager.start_game();
-        
+        Player.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
+    
 }

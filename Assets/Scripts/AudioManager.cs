@@ -26,6 +26,7 @@ public class AudioManager : MonoBehaviour
     public void playMusic()
     {
         audioSource_Music.clip = AC_music;
+        audioSource_Music.volume = 0.1f;
         audioSource_Music.Play();
     }
 

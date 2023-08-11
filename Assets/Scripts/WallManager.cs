@@ -26,5 +26,8 @@ public class WallManager : MonoBehaviour
         if(collision.tag == "resetwall")
             wall.transform.position = new Vector3(cur_posWall.x,Random.Range(1,4),0);
     }
-
+    public void setMoveSpeed(float speed)
+    {
+        this.movespeed = speed;
+    }
 }
