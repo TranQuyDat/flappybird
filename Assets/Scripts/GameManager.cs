@@ -26,6 +26,7 @@ public class SaveGameobj
 }
 public class GameManager : MonoBehaviour
 {
+    BackgroundScroller[] backgroundScroller;
     AnimationManager AnimationManager;
     AudioManager audioManager;
     GameStartController gameStartController;
@@ -50,6 +51,7 @@ private void Start()
         audioManager = FindAnyObjectByType<AudioManager>();
         AnimationManager = FindAnyObjectByType<AnimationManager>();
         WallManager = FindObjectsOfType<WallManager>();
+        backgroundScroller = FindObjectsOfType<BackgroundScroller>();
         //
         gameStartController.SetActiveGameStart(true);
         gamePlayController.SetActiveGamePlay(false);
@@ -69,7 +71,11 @@ private void Start()
     }
 
 
-
+    public void setspeed_bgScroll(float speed)
+    {
+        backgroundScroller[0].setspeed(speed);
+        backgroundScroller[1].setspeed(speed);
+    }
     public void setWallSpeed( float speed)
     {
         foreach(WallManager wall in WallManager)

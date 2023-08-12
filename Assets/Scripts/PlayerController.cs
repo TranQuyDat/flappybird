@@ -62,11 +62,13 @@ public class PlayerController : MonoBehaviour
         gameManager.setPoint_gameover(point);
         gameManager.setactive_Gameover(true);
         gameManager.setactive_Gameplay(false);
+        gameManager.setspeed_bgScroll(0);
     }
     public void Gamestart()
     {
         point = 0;
         Debug.Log("gameover");
+        gameManager.setspeed_bgScroll(4.5f);
         gameManager.setWallSpeed(3);
         isFly = false;
         gameManager.checkBirdDie(false);

@@ -19,12 +19,15 @@ public class WallManager : MonoBehaviour
     void Update()
     {
         wall.transform.Translate(new Vector3(-1*Time.deltaTime* movespeed, 0, 0));
-       
+
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "resetwall")
+        if(collision.tag == "resetwall") 
+        { 
             wall.transform.position = new Vector3(cur_posWall.x,Random.Range(1,4),0);
+        }
     }
     public void setMoveSpeed(float speed)
     {
