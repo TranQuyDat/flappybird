@@ -9,7 +9,7 @@ public class GameStartController : MonoBehaviour
 
     private void Start()
     {
-        txt_hightpoint.text = "HightPoint : " + PlayerPrefs.GetInt("hightpoint",0).ToString();
+        txt_hightpoint.text = "HighPoint : " + PlayerPrefs.GetInt("highpoint",0).ToString();
         //Debug.Log(PlayerPrefs.GetInt("hightpoint").ToString());
     }
     public void SetActiveGameStart(bool setactive)
@@ -26,10 +26,10 @@ public class GameStartController : MonoBehaviour
     }
     public void updatePoint(int Hightpoint)
     {
-        if (Hightpoint > PlayerPrefs.GetInt("hightpoint", 0))
+        if (Hightpoint > PlayerPrefs.GetInt("highpoint", 0))
         {
-            PlayerPrefs.SetInt("hightpoint", Hightpoint);
-            txt_hightpoint.text = "HightPoint : " + Hightpoint.ToString();
+            PlayerPrefs.SetInt("highpoint", Hightpoint);
+            txt_hightpoint.text = "HighPoint : " + Hightpoint.ToString();
         }
         ;
     }
