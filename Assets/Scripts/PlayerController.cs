@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb =new Rigidbody2D();
     int point = 0;
     bool isFly;
+    int deadcount=0;
     GameManager gameManager;
     private void Start()
     {
@@ -39,12 +40,13 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "addpoint")
+        if (collision.tag == "addpoint")
         {            point += 1;
             gameManager.addPoint(point);
         }
-        else if  (collision.tag == "isWall" || collision.tag == "Ground")
+        else if  ((collision.tag == "isWall" || collision.tag == "Ground") && deadcount < 1)
         {
+            deadcount++;
             Gameover();
             gameManager.checkBirdDie(true);
             gameManager.setactive_Gameplay(false);
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
 
     public void Gameover()
     {
+        //Debug.Log("gameover");
+        
         gameManager.setPoint_gameover(point);
         gameManager.setactive_Gameover(true);
         gameManager.setactive_Gameplay(false);
@@ -66,8 +70,8 @@ public class PlayerController : MonoBehaviour
     }
     public void Gamestart()
     {
+        deadcount = 0;
         point = 0;
-        Debug.Log("gameover");
         gameManager.setspeed_bgScroll(4.5f);
         gameManager.setWallSpeed(3);
         isFly = false;

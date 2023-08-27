@@ -57,7 +57,7 @@ private void Start()
         gamePlayController.SetActiveGamePlay(false);
         gamePauseController.SetActiveGamePause(false);
         gameOverController.setActive(false);
-        audioManager.playMusic();
+        audioManager.Audio_playLoop("music");
     }
 
 
@@ -101,7 +101,7 @@ private void Start()
     }
     public void addPoint( int point)
     {
-        audioManager.Audio_AddPoint();
+        audioManager.Audio_playoneshot("point_sound") ;
         gamePlayController.SetPoint(point);
         this.point = point;
     }
@@ -122,6 +122,8 @@ private void Start()
     public void setactive_Gameover(bool setactive)
     {
         gameOverController.setActive(setactive);
+        audioManager.audioSource_Music.mute = true;
+        audioManager.Audio_playoneshot("gameover_sound");
     }
     public void setPoint_gameover(int point)
     {
@@ -135,8 +137,9 @@ private void Start()
     public void start_game()
     {
         saveGameobj.gameStart(wallManagers);
-        gamePlayController.SetActiveGamePlay(false);
+        gameOverController.setActive(false);
         gameStartController.SetActiveGameStart(true);
+        audioManager.audioSource_Music.mute = false;
     }
 
     public void updateHightPoint(int hightpoint)
